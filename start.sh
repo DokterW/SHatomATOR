@@ -1,5 +1,5 @@
 #!/bin/bash
-# SHatomATOR v0.1
+# SHatomATOR v0.2
 # Upgrades Atom Editor on RPM systems.
 # Written by Dr. Waldijk
 # Read the README.md for more info.
@@ -19,9 +19,9 @@ atomdownload=$(echo "https://github.com/atom/atom/releases/download/v")
     if [ "$atomlatest" != "$atominstalled" ]
     then
         # Download, upgrade & remove d/l file
-        wget -q --show-progress $atomdownload$atomlatest/$atomrpm
-        sudo dnf -y upgrade $atomrpm
-        rm atom.x86_64.rpm
+        wget -q --show-progress $atomdownload$atomlatest/$atomrpm -P /tmp/
+        sudo dnf -y upgrade /tmp/$atomrpm
+        rm /tmp/atom.x86_64.rpm
     else
         echo "You already have the latest version of Atom Editor v$atomlatest installed."
     fi
