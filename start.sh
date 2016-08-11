@@ -21,7 +21,7 @@ atomdownload=$(echo "https://github.com/atom/atom/releases/download/v")
         # Download, upgrade & remove d/l file
         wget -q --show-progress $atomdownload$atomlatest/$atomrpm -P /tmp/
         sudo dnf -y upgrade /tmp/$atomrpm
-        rm /tmp/atom.x86_64.rpm
+        rm /tmp/$atomrpm
     else
         echo "You already have the latest version of Atom Editor v$atomlatest installed."
     fi
