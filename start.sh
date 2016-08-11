@@ -1,6 +1,6 @@
 #!/bin/bash
 # SHatomATOR v0.1
-# Installs Atom Editor on RPM systems.
+# Upgrades Atom Editor on RPM systems.
 # Written by Dr. Waldijk
 # Read the README.md for more info.
 #
