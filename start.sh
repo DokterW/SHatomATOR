@@ -1,6 +1,6 @@
 #!/bin/bash
-# SHatomATOR v0.2
-# Upgrades Atom Editor on RPM systems.
+# SHatomATOR v0.3
+# Installs & Upgrades Atom Editor on Fedora.
 # Written by Dr. Waldijk
 # Read the README.md for more info.
 # -----------------------------------------------------------------------------------
@@ -27,6 +27,6 @@ then
     fi
 else
     wget -q --show-progress $atomdownload$atomlatest/$atomrpm -P /tmp/
-    sudo dnf -y upgrade /tmp/$atomrpm
+    sudo dnf -y install /tmp/$atomrpm
     rm /tmp/$atomrpm
 fi
