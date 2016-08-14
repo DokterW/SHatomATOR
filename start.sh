@@ -1,7 +1,7 @@
 #!/bin/bash
 # SHatomATOR v0.3
+# Made by Dr. Waldijk
 # Installs & Upgrades Atom Editor on Fedora.
-# Written by Dr. Waldijk
 # Read the README.md for more info.
 # -----------------------------------------------------------------------------------
 echo "Checking..."
