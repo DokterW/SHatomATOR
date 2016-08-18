@@ -3,6 +3,7 @@
 # Made by Dr. Waldijk
 # Installs & Upgrades Atom Editor on Fedora.
 # Read the README.md for more info.
+# By running this script you agree to the license terms.
 # -----------------------------------------------------------------------------------
 echo "Checking..."
 # Fetch latest version URL for Atom Editor.
