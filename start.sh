@@ -14,10 +14,10 @@ then
     atomurl=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest)
     # Same as above, but regex out the version.
     atomlatest=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest | egrep -o '([0-9]\.)*[0-9]')
+    # Fetch version of installed Atom Editor.
+    atominstalled=$(dnf info atom --cacheonly | grep Version | egrep -o '([0-9]\.)*[0-9]')
     if [ "$atomlatest" != "$atominstalled" ]
     then
-        # Fetch version of installed Atom Editor.
-        atominstalled=$(dnf info atom --cacheonly | grep Version | egrep -o '([0-9]\.)*[0-9]')
         atomrpm=$(echo "atom.x86_64.rpm")
         atomdownload=$(echo "https://github.com/atom/atom/releases/download/v")
         wget -q --show-progress $atomdownload$atomlatest/$atomrpm -P /tmp/
