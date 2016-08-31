@@ -1,5 +1,5 @@
 #!/bin/bash
-# SHatomATOR v0.4
+# SHatomATOR v0.5
 # Made by Dr. Waldijk
 # Installs & Upgrades Atom Editor on Fedora.
 # Read the README.md for more info.
@@ -13,9 +13,9 @@ then
     # Fetch latest version URL for Atom Editor.
     atomurl=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest)
     # Same as above, but regex out the version.
-    atomlatest=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest | egrep -o '([0-9]\.)*[0-9]')
+    atomlatest=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
     # Fetch version of installed Atom Editor.
-    atominstalled=$(dnf info atom --cacheonly | grep Version | egrep -o '([0-9]\.)*[0-9]')
+    atominstalled=$(dnf info atom --cacheonly | grep Version | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
     if [ "$atomlatest" != "$atominstalled" ]
     then
         atomrpm=$(echo "atom.x86_64.rpm")
