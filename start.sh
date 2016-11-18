@@ -32,4 +32,6 @@ else
     wget -q --show-progress $ATOMDOWNLOAD$ATOMLATEST/$ATOMRPM -P /tmp/
     sudo dnf -y install /tmp/$ATOMRPM
     rm /tmp/$ATOMRPM
+    atomupgradealias=$(pwd)
+    echo "alias atomupgrade='$atomupgradealias/start.sh'" >> ~/.bashrc
 fi
