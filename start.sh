@@ -4,22 +4,23 @@
 # Installs & Upgrades Atom Editor on Fedora.
 # Read the README.md for more info.
 # By running this script you agree to the license terms.
-# -----------------------------------------------------------------------------------
-echo "Checking..."
+# Settings --------------------------------------------------------------------------
 ATOMRPM="atom.x86_64.rpm"
 ATOMDOWNLOAD="https://github.com/atom/atom/releases/download/v"
-# Fetch latest version URL for Atom Editor.
-ATOMURL=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest)
-# Same as above, but regex out the version.
-ATOMLATEST=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
+# -----------------------------------------------------------------------------------
 # Check if .rpm is still in tmp, if so delete.
 if [ e- /tmp/$ATOMRPM ]
 then
     rm /tmp/$ATOMRPM
 fi
+echo "Checking..."
 # Check if Atom is installed, if yes then check if upgrade is available, if no then install.
 if [ -e /bin/atom ]
 then
+    # Fetch latest version URL for Atom Editor.
+    ATOMURL=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest)
+    # Same as above, but regex out the version.
+    ATOMLATEST=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
     # Fetch version of installed Atom Editor.
     ATOMINSTALLED=$(dnf info atom --cacheonly | grep Version | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
     if [ "$ATOMLATEST" != "$ATOMINSTALLED" ]
