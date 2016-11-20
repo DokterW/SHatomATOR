@@ -1,5 +1,5 @@
 #!/bin/bash
-# SHatomATOR v0.6.1
+# SHatomATOR v0.6.2
 # Made by Dr. Waldijk
 # Installs & Upgrades Atom Editor on Fedora.
 # Read the README.md for more info.
@@ -9,7 +9,7 @@ ATOMRPM="atom.x86_64.rpm"
 ATOMDOWNLOAD="https://github.com/atom/atom/releases/download/v"
 # -----------------------------------------------------------------------------------
 # Check if .rpm is still in tmp, if so delete.
-if [ e- /tmp/$ATOMRPM ]
+if [ -e /tmp/$ATOMRPM ]
 then
     rm /tmp/$ATOMRPM
 fi
