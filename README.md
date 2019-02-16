@@ -2,9 +2,7 @@
 
 A simple script to install and upgrade [Atom Editor](https://atom.io) on Fedora.
 
-**Discontinued**
-
-Use [doghum](https://github.com/DokterW/doghum) instead.
+`doghum install shatomator`
 
 ### Roadmap
 

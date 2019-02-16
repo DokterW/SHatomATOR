@@ -1,5 +1,5 @@
 #!/bin/bash
-# SHatomATOR v0.6.2
+# SHatomATOR v0.7
 # Made by Dr. Waldijk
 # Installs & Upgrades Atom Editor on Fedora.
 # Read the README.md for more info.
@@ -9,22 +9,19 @@ ATOMRPM="atom.x86_64.rpm"
 ATOMDOWNLOAD="https://github.com/atom/atom/releases/download/v"
 # -----------------------------------------------------------------------------------
 # Check if .rpm is still in tmp, if so delete.
-if [ -e /tmp/$ATOMRPM ]
-then
+if [[ -e /tmp/$ATOMRPM ]]; then
     rm /tmp/$ATOMRPM
 fi
 echo "Checking..."
 # Check if Atom is installed, if yes then check if upgrade is available, if no then install.
-if [ -e /bin/atom ]
-then
+if [[ -e /bin/atom ]]; then
     # Fetch latest version URL for Atom Editor.
     ATOMURL=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest)
     # Same as above, but regex out the version.
     ATOMLATEST=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
     # Fetch version of installed Atom Editor.
     ATOMINSTALLED=$(dnf info atom --cacheonly | grep Version | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
-    if [ "$ATOMLATEST" != "$ATOMINSTALLED" ]
-    then
+    if [[ "$ATOMLATEST" != "$ATOMINSTALLED" ]]; then
         # Download, upgrade & remove d/l file
         wget -q --show-progress $ATOMDOWNLOAD$ATOMLATEST/$ATOMRPM -P /tmp/
         sudo dnf -y upgrade /tmp/$ATOMRPM
@@ -38,6 +35,6 @@ else
     wget -q --show-progress $ATOMDOWNLOAD$ATOMLATEST/$ATOMRPM -P /tmp/
     sudo dnf -y install /tmp/$ATOMRPM
     rm /tmp/$ATOMRPM
-    atomupgradealias=$(pwd)
-    echo "alias atomupgrade='$atomupgradealias/start.sh'" >> ~/.bashrc
+    #atomupgradealias=$(pwd)
+    #echo "alias atomupgrade='$atomupgradealias/start.sh'" >> ~/.bashrc
 fi
