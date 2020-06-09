@@ -13,12 +13,12 @@ if [[ -e /tmp/$ATOMRPM ]]; then
     rm /tmp/$ATOMRPM
 fi
 echo "Checking..."
+# regex out Atom's latest version from latest-version URL
+ATOMLATEST=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
 # Check if Atom is installed, if yes then check if upgrade is available, if no then install.
 if [[ -e /bin/atom ]]; then
     # Fetch latest version URL for Atom Editor.
     ATOMURL=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest)
-    # Same as above, but regex out the version.
-    ATOMLATEST=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/atom/atom/releases/latest | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
     # Fetch version of installed Atom Editor.
     ATOMINSTALLED=$(dnf info atom --cacheonly | grep Version | egrep -o '([0-9]{1,2}\.)*[0-9]{1,2}')
     if [[ "$ATOMLATEST" != "$ATOMINSTALLED" ]]; then
